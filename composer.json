@@ -1,0 +1,19 @@
+{
+    "name": "deskola/simple-dropbox",
+    "description": "Simple package for Dropbox integration",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Deskola\\SimpleDropbox\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sennis",
+            "email": "dennis@ipayafrica.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
