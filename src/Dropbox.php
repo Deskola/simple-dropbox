@@ -2,7 +2,8 @@
 
 namespace Deskola\SimpleDropbox;
 
-class Dropbox {
+class Dropbox
+{
     private $clientKey;
     private $clientSecrete;
     private $token;
@@ -18,7 +19,7 @@ class Dropbox {
         }
     }
 
-    public function generate_token($code, $grantType = '')
+    public function generate_refresh_token($code, $grantType = '')
     {
         $payload = [
             'code' => $code,
@@ -359,6 +360,29 @@ class Dropbox {
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $apiResponse = curl_exec($ch);
+        curl_close($ch);
+
+        return is_null(json_decode($apiResponse, true))
+            ? $apiResponse
+            : json_decode($apiResponse, true);
+
+    }
+
+    private function simpleCurl($url, $payload, $header, $type = 'normal', $requestMethod = 'POST', $fileHandler = null, $size = null)
+    {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $requestMethod);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        if ($type == 'file'){
+            curl_setopt($ch, CURLOPT_INFILE, $fileHandler);
+            curl_setopt($ch, CURLOPT_INFILESIZE, $size);
+        }
 
         $apiResponse = curl_exec($ch);
         curl_close($ch);
