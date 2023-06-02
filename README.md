@@ -27,7 +27,7 @@ composer require deskola/simple-dropbox
 ### Generate Refresh token
 1. Go to Dropbox App console and create a new app
 2. App ClientId and CLientSecrete will be generated.
-3. Use this Stackoverflow solution to generate a token. From the same solution you can proceed and generate a refresh token.
+3. Use this Stackoverflow solution https://stackoverflow.com/questions/70641660/how-do-you-get-and-use-a-refresh-token-for-the-dropbox-api-python-3-x/71794390#71794390 to generate a token. From the same solution you can proceed and generate a refresh token.
 4. Or use the inbuilt fuction to generate the refresh token.
 
 ```php
